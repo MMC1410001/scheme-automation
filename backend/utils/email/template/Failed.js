@@ -1,0 +1,166 @@
+/**
+ * Failed Email Template
+ * @param {string} status - HTTP status or descriptive status
+ * @param {object|string} details - Detailed error message or response
+ */
+function FailedTemplate(status, details) {
+  const detailsStr =
+    typeof details === "object" ? JSON.stringify(details, null, 2) : details;
+  const timestamp = new Date().toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+  });
+
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Failure Notification</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfafb;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #fdfafb;
+            padding-bottom: 40px;
+        }
+        .main {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-spacing: 0;
+            color: #4a4a4a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+        .header {
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #ffffff;
+            font-size: 24px;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .status-badge {
+            display: inline-block;
+            background-color: #fff5f5;
+            color: #e03131;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .content h2 {
+            color: #2d3436;
+            font-size: 20px;
+            margin-top: 0;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #636e72;
+        }
+        .error-box {
+            background-color: #fff5f5;
+            border: 1px solid #ffc9c9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .error-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #f03e3e;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #2d3436;
+            margin: 0;
+        }
+        .footer {
+            padding: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #b2bec3;
+        }
+        .footer hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        .accent {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .help-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #868e96;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <table class="main">
+            <tr>
+                <td class="header">
+                    <h1>Alert: Process Failed</h1>
+                </td>
+            </tr>
+            <tr>
+                <td class="content">
+                    <div class="status-badge">✖ FAILED</div>
+                    <h2>Scheme Automation Process Interrupted</h2>
+                    <p>Greetings,</p>
+                    <p>The automation system encountered an error while processing the Scheme Automation request. Action may be required to resolve this issue.</p>
+                    
+                    <div class="error-box">
+                        <div class="error-title">Failure Summary</div>
+                        <p style="margin-bottom: 10px;"><span class="accent">Status:</span> ${status}</p>
+                        <p style="margin-bottom: 10px;"><span class="accent">Timestamp:</span> ${timestamp}</p>
+                        <div class="error-title" style="margin-top: 20px;">Error Details</div>
+                        <pre>${detailsStr}</pre>
+                    </div>
+                    
+                    <p class="help-text">Please check the cloud dashboard or server logs for more comprehensive diagnostic information.</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="footer">
+                    <hr>
+                    <p>This is an automated message from the Scheme Automation System.</p>
+                    <p>&copy; 2026 Scheme Automation. All rights reserved.</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+  `;
+}
+
+module.exports = FailedTemplate;

@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* Synchronized Animations - All start at the same time */
+@keyframes syncPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes syncPing {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes syncBounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Synchronized animation classes */
+.sync-pulse {
+  animation: syncPulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0s !important;
+}
+
+.sync-ping {
+  animation: syncPing 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  animation-delay: 0s !important;
+}
+
+.sync-bounce {
+  animation: syncBounce 1s infinite;
+  animation-delay: 0s !important;
+}
+
+.sync-pulse-fast {
+  animation: syncPulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0s !important;
+}
