@@ -5,7 +5,7 @@ Business users drop Excel/CSV files into labelled slots; the app validates each 
 headings against a BigQuery table schema, lets the user correct mismatches, uploads the files to
 Google Cloud Storage, and triggers a downstream Cloud Run job — notifying by email.
 
-> **Sanitized reference implementation.** This is a genericised version of a private project,
+> This is a genericised version
 > published for reference. All credentials, infrastructure identifiers and organisation-specific
 > naming have been removed. It is not affiliated with, endorsed by, or derived from the data of
 > any organisation, and it ships with no working cloud configuration — you must supply your own.
